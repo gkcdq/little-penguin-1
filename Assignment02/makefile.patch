@@ -1,0 +1,26 @@
+From 7c0c6d264c6db5b28be450ab84ea3709e9ca90e1 Mon Sep 17 00:00:00 2001
+From: Miillliiinn <thomasmilinjloba@gmail.com>
+Date: Mon, 15 Jun 2026 13:24:56 -0400
+Subject: [PATCH] Makefile: EXTRAVERSION with -thor_kernel
+
+Signed-off-by: Miillliiinn <thomasmilinjloba@gmail.com>
+---
+ Makefile | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile b/Makefile
+index e156e2696..4a7cc660e 100644
+--- a/Makefile
++++ b/Makefile
+@@ -2,7 +2,7 @@
+ VERSION = 7
+ PATCHLEVEL = 1
+ SUBLEVEL = 0
+-EXTRAVERSION = -rc7
++EXTRAVERSION = -rc7-thor_kernel
+ NAME = Baby Opossum Posse
+ 
+ # *DOCUMENTATION*
+-- 
+2.39.5
+
