@@ -22,6 +22,21 @@ Le module d'origine (un pilote `miscdevice` effectuant une inversion de chaîne 
 * **Cycle de vie du module :** Correction de la fonction d'initialisation (doit retourner `0` en cas de succès) et complétion de la fonction de nettoyage avec `misc_deregister()` pour éviter de laisser un périphérique fantôme en mémoire après le déchargement.
 
 ---
+## Fonctionnement du Module (Résumé)
+
+Ce module implémente un **pilote de périphérique générique** (*Character Device Driver*) basé sur l'interface **`miscdevice`**. Son but est d'intercepter les flux textuels envoyés par l'utilisateur, de les stocker, et de les restituer entièrement inversés (caractère par caractère) lors de la lecture.
+
+Le cycle de traitement des données repose sur deux opérations majeures :
+
+1. **L'Écriture (`myfd_write`) :** * Lorsqu'un utilisateur envoie une chaîne vers `/dev/reverse` (via `echo`), le module acquiert un verrou **Mutex**.
+   * Les données sont copiées de manière sécurisée depuis l'espace utilisateur vers un tampon statique du noyau (`device_buffer`) de taille `PAGE_SIZE`, puis le verrou est libéré.
+
+2. **La Lecture (`myfd_read`) :** * Lors d'un appel en lecture (via `cat`), le module sécurise à nouveau l'accès avec le Mutex.
+   * Il alloue dynamiquement un espace mémoire temporaire (`kmalloc`) équivalent à la taille du texte stocké.
+   * Une boucle itère à rebours sur le tampon d'origine pour copier les caractères inversés dans le nouvel espace.
+   * La chaîne inversée est transmise à l'utilisateur, la mémoire temporaire est immédiatement libérée (`kfree`), et le Mutex est relâché.
+
+Ce mécanisme garantit un comportement **thread-safe** (aucune condition de course en cas d'accès simultanés) et une gestion de la mémoire sans aucune fuite (*memory leak*).
 
 ## Validation de la conformité du Style
 
