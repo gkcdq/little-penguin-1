@@ -1,0 +1,27 @@
+=== 1. Structure et Droits initiaux des fichiers ===
+total 0
+-rw-r--r-- 1 root root 0 Jun 16 11:56 foo
+-rw-rw-rw- 1 root root 0 Jun 16 11:56 id
+-r--r--r-- 1 root root 0 Jun 16 11:56 jiffies
+
+=== 2. Test du fichier 'id' ===
+Lecture de id :
+milin
+Écriture correcte dans id :
+Success
+Écriture incorrecte dans id :
+bash: echo: write error: Invalid argument
+
+=== 3. Test du fichier 'jiffies' ===
+Première lecture :
+4295133751
+Deuxième lecture (la valeur doit avoir augmenté) :
+4295134007
+Tentative d'écriture (doit échouer) :
+bash: echo: write error: Invalid argument
+
+=== 4. Test du fichier 'foo' (Root vs User) ===
+Écriture dans foo par ROOT :
+Chaine_Secrete_42
+Tentative d'écriture dans foo par un simple USER :
+bash: line 1: /sys/kernel/debug/fortytwo/foo: Permission denied
