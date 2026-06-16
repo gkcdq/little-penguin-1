@@ -30,6 +30,40 @@ sudo mount -t debugfs none /sys/kernel/debug/ 2>/dev/null
 make
 sudo insmod main.ko
 ```
+### 1.5 Script pour proof
+```bash
+echo "=== 1. Structure et Droits initiaux des fichiers ===" > proof.txt
+ls -l /sys/kernel/debug/fortytwo/ >> proof.txt
+
+echo "" >> proof.txt
+echo "=== 2. Test du fichier 'id' ===" >> proof.txt
+echo "Lecture de id :" >> proof.txt
+cat /sys/kernel/debug/fortytwo/id >> proof.txt
+echo "Écriture correcte dans id :" >> proof.txt
+echo "milin" > /sys/kernel/debug/fortytwo/id && echo "Success" >> proof.txt
+echo "Écriture incorrecte dans id :" >> proof.txt
+(echo "bad" > /sys/kernel/debug/fortytwo/id) 2>> proof.txt
+
+echo "" >> proof.txt
+echo "=== 3. Test du fichier 'jiffies' ===" >> proof.txt
+echo "Première lecture :" >> proof.txt
+cat /sys/kernel/debug/fortytwo/jiffies >> proof.txt
+sleep 1
+echo "Deuxième lecture (la valeur doit avoir augmenté) :" >> proof.txt
+cat /sys/kernel/debug/fortytwo/jiffies >> proof.txt
+echo "Tentative d'écriture (doit échouer) :" >> proof.txt
+(echo "123" > /sys/kernel/debug/fortytwo/jiffies) 2>> proof.txt
+
+echo "" >> proof.txt
+echo "=== 4. Test du fichier 'foo' (Root vs User) ===" >> proof.txt
+echo "Écriture dans foo par ROOT :" >> proof.txt
+echo "Chaine_Secrete_42" > /sys/kernel/debug/fortytwo/foo
+cat /sys/kernel/debug/fortytwo/foo >> proof.txt
+echo "Tentative d'écriture dans foo par un simple USER :" >> proof.txt
+# On simule un utilisateur classique avec su miillliiinn -c
+(su miillliiinn -c 'echo "attaque" > /sys/kernel/debug/fortytwo/foo') 2>> proof.txt
+```
+
 ### 2. Validation des Fichiers
 Fichier id (Permissions globales)
 ```Bash
