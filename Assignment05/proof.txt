@@ -1,11 +1,10 @@
 === 1. Vérification de l'existence du périphérique ===
-crw------- 1 root root 10, 261 Jun 16 11:03 /dev/fortytwo
+crw------- 1 root root 10, 261 Jun 16 11:14 /dev/fortytwo
 
 === 2. Test de LECTURE (Doit afficher le login) ===
 milin
 
 === 3. Test d'ÉCRITURE avec le BON login (Doit réussir) ===
-Write Success: Match!
 
 === 4. Test d'ECRITURE avec un MAUVAIS login (Doit renvoyer une erreur) ===
 bash: echo: write error: Invalid argument
