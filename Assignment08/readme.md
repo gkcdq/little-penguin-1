@@ -28,7 +28,10 @@ Le module d'origine (un pilote `miscdevice` effectuant une inversion de chaîne 
 L'analyse finale du fichier via l'outil officiel du noyau confirme le respect strict des directives de style :
 
 ```bash
-$ ~/Downloads/linux/scripts/checkpatch.pl --file --no-tree CodingStyle.c
+# Commande pour la verification :
+~/Downloads/linux/scripts/checkpatch.pl --file --no-tree CodingStyle.c
+```
+```bash
 total: 0 errors, 0 warnings, 0 checks, 109 lines checked
 
 CodingStyle.c has no obvious style problems and is ready for submission.
