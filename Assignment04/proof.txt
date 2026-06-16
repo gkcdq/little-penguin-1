@@ -1,0 +1,5 @@
+=== Module automatiquement chargé (lsmod) ===
+main                   12288  0
+
+=== Log d'initialisation du Kernel (dmesg) ===
+[ 1799.088171] Hello world!
