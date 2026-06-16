@@ -26,11 +26,11 @@ Le module d'origine (un pilote `miscdevice` effectuant une inversion de chaîne 
 ## Validation de la conformité du Style
 
 L'analyse finale du fichier via l'outil officiel du noyau confirme le respect strict des directives de style :
-
+#### Commande pour la verification :
 ```bash
-# Commande pour la verification :
 ~/Downloads/linux/scripts/checkpatch.pl --file --no-tree CodingStyle.c
 ```
+#### Resultat :
 ```bash
 total: 0 errors, 0 warnings, 0 checks, 109 lines checked
 
