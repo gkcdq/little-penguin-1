@@ -33,18 +33,24 @@ sudo insmod main.ko
 
 Une fois chargé, le périphérique /dev/fortytwo doit répondre aux commandes standard de l'espace utilisateur :
 ```Bash
-=== 1. Vérification de l'existence du périphérique ===
-crw------- 1 root root 10, 261 Jun 16 11:14 /dev/fortytwo
+# 1. Entête et statut du périphérique (Heure mise à jour)
+echo "=== 1. Vérification de l'existence du périphérique ===" > proof.txt
+ls -l /dev/fortytwo >> proof.txt
 
-=== 2. Test de LECTURE (Doit afficher ton login) ===
-milin
+# 2. Test de lecture
+echo "" >> proof.txt
+echo "=== 2. Test de LECTURE (Doit afficher mon login) ===" >> proof.txt
+cat /dev/fortytwo >> proof.txt
 
-=== 3. Test d'ÉCRITURE avec le BON login (Doit réussir) ===
+# 3. Test du bon login (Le sujet veut voir un retour propre/vide sans erreur)
+echo "" >> proof.txt
+echo "=== 3. Test d'ÉCRITURE avec le BON login (Doit réussir) ===" >> proof.txt
+echo "milin" > /dev/fortytwo 2>> proof.txt
 
-=== 4. Test d'ÉCRITURE avec un MAUVAIS login (Doit renvoyer une erreur) ===
-bash: echo: write error: Invalid argument
-root@milin:~/Documents/little-penguin-1/Assignment05# 
-
+# 4. Test du mauvais login (Doit enregistrer l'erreur d'argument)
+echo "" >> proof.txt
+echo "=== 4. Test d'ÉCRITURE avec un MAUVAIS login (Doit renvoyer une erreur) ===" >> proof.txt
+echo "wrong_login" > /dev/fortytwo 2>> proof.txt
 ```
 ### 3. Nettoyage du système
 ```Bash
