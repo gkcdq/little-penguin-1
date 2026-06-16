@@ -1,0 +1,16 @@
+=== 1. Vérification du fichier dans /proc ===
+-r--r--r-- 1 root root 0 Jun 16 12:45 /proc/mymounts
+
+=== 2. Contenu de /proc/mymounts ===
+root /
+sys /sys
+proc /proc
+run /run
+dev /dev
+
+=== 3. Logs du noyau (dmesg) ===
+[ 1379.164443] clocksource: Watchdog               kvm-clock interval:            10702ns
+[ 1379.164445] clocksource: Clocksource                  tsc interval:            10495ns
+[ 1379.164446] tsc: Marking TSC unstable due to clocksource watchdog
+[ 1379.165203] clocksource: Switched to clocksource kvm-clock
+[ 3933.817752] /proc/mymounts registered successfully
