@@ -70,8 +70,3 @@ Ce projet est une introduction intensive au développement de modules et à la m
 
 ---
 
-## 🚀 Commandes Utiles (Mémo)
-
-### Compilation d'un module
-```bash
-make -C /lib/modules/$(uname -r)/build M=$(pwd) modules
